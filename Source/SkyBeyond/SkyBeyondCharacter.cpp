@@ -138,12 +138,14 @@ bool ASkyBeyondCharacter::CanJumpInternal_Implementation() const
 	return !bIsCrouched && CharacterMovement && (CharacterMovement->IsMovingOnGround() || bCanHoldToJumpHigher ||(CurrentJumps > 0 && CurrentJumps < MaxJumps)) && CharacterMovement->IsJumpAllowed() && !CharacterMovement->bWantsToCrouch;
 }
 
+/**Increments CurrentJumps, and calls the base function*/
 void ASkyBeyondCharacter::OnJumped_Implementation()
 {
 	Super::OnJumped_Implementation();
 	CurrentJumps++;
 }
 
+/**Updates CurrentJumps, and calls the base function*/
 void ASkyBeyondCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
