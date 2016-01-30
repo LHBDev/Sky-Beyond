@@ -1,4 +1,6 @@
 ### Instructions for downloading and use ###
+NOTE! this needs to be re-writen for github
+
 1. Make sure you're working with the dev branch and not the master branch. This is important!
 2. Make sure you have the SourceTree program installed.
 3. Click the big "Check out in SourceTree" button.
