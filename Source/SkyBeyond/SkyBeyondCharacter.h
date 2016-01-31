@@ -27,13 +27,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-	/**Limits the amount of times we can jump in the air*/
-	UPROPERTY(EditDefaultsOnly, Category = Player)
-	uint8 MaxJumps;
-
-	/**Counts how many times we have jumped since last touching the ground*/
-	uint8 CurrentJumps;
-
 protected:
 
 	/** Called for forwards/backward input */
@@ -62,6 +55,16 @@ protected:
 
 	/**Overridden for double jumps*/
 	virtual bool CanJumpInternal_Implementation() const;
+
+	/**Limits the amount of times we can jump in the air*/
+	UPROPERTY(EditDefaultsOnly, Category = "Character Movement: Jumping / Falling")
+	uint8 MaxJumps;
+
+	/**Counts how many times we have jumped since last touching the ground*/
+	mutable uint8 CurrentJumps;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Character Movement: Jumping / Falling")
+		bool OnAirJump();
 
 protected:
 	// APawn interface

@@ -135,6 +135,11 @@ bool ASkyBeyondCharacter::CanJumpInternal_Implementation() const
 {
 	const bool bCanHoldToJumpHigher = (GetJumpMaxHoldTime() > 0.0f) && IsJumpProvidingForce();
 	UE_LOG(LogTemp, Warning, TEXT("CurrentJumps: %d"), CurrentJumps);
+	//allows us to double jump if we fell off a platform
+	if (CurrentJumps == 0 && CharacterMovement->IsFalling() == true) {
+		CurrentJumps++;
+	}
+
 	return !bIsCrouched && CharacterMovement && (CharacterMovement->IsMovingOnGround() || bCanHoldToJumpHigher ||(CurrentJumps > 0 && CurrentJumps < MaxJumps)) && CharacterMovement->IsJumpAllowed() && !CharacterMovement->bWantsToCrouch;
 }
 
@@ -143,6 +148,9 @@ void ASkyBeyondCharacter::OnJumped_Implementation()
 {
 	Super::OnJumped_Implementation();
 	CurrentJumps++;
+	if (CurrentJumps > 1) {
+		this->OnAirJump();
+	}
 }
 
 /**Updates CurrentJumps, and calls the base function*/
