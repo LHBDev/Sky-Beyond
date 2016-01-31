@@ -1,7 +1,7 @@
-Binaries/
-DerivedDataCache/
-Intermediate/
-Saved/
+Binaries/*
+DerivedDataCache/*
+Intermediate/*
+Saved/*
 *.opensdf
 *.sdf
 *.sln
